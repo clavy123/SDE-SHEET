@@ -5,19 +5,14 @@ class NextSmaller{
 		Stack<Integer> stack=new Stack();
 		HashMap<Integer,Integer> hash=new HashMap<Integer,Integer>();
         for(int i=arr.length-1;i>=0;i--){
-            if(!stack.isEmpty())
-            {
-                   while(!stack.isEmpty() && stack.peek()>=arr[i]){
-                       stack.pop();
-                      }
-            } 
-            if(stack.isEmpty()){
-                hash.put(arr[i],-1);
-            }
-            else{
-                hash.put(stack.peek(),arr[i]);
-            }
-            stack.push(arr[i]);
+           if(stack.isEmpty()){
+               stack.push(arr[i]);
+               continue;
+           }
+           while(!stack.isEmpty() && stack.peek()<=arr[i]){
+               hash.put(stack.peek(),arr[i]);
+               stack.peek();
+           }
         }
         while(!stack.isEmpty()){
             hash.put(stack.peek(),-1);
